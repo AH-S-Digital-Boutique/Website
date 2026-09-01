@@ -1,6 +1,4 @@
-from pathlib import Path
-
-html = r'''<!doctype html>
+<!doctype html>
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
@@ -49,8 +47,5 @@ document.querySelectorAll('.faq-q').forEach(q=>q.addEventListener('click',()=>q.
 const menu=document.getElementById('menu');menu.addEventListener('click',()=>{const l=document.querySelector('.links');const open=l.dataset.open==='1';l.dataset.open=open?'0':'1';l.style.display=open?'none':'flex';if(!open){l.style.position='absolute';l.style.top='72px';l.style.left='10px';l.style.right='10px';l.style.padding='18px';l.style.background='#fff';l.style.border='1px solid #11131814';l.style.borderRadius='16px';l.style.flexDirection='column'}});
 const c=document.getElementById('cursor');addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px'});document.querySelectorAll('a,button,.feature,.price').forEach(x=>{x.addEventListener('mouseenter',()=>c.classList.add('big'));x.addEventListener('mouseleave',()=>c.classList.remove('big'))});
 </script>
-</body></html>'''
-
-path = Path("/mnt/data/nexora-no-email.html")
-path.write_text(html, encoding="utf-8")
-print(path)
+</body>
+</html>
