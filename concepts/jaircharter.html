@@ -9,7 +9,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Lexend:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -853,7 +853,8 @@ button{
 .cta h2{
   margin:15px auto 25px;
   max-width:1000px;
-  font-size:clamp(54px,8vw,112px);
+  font:600 clamp(54px,8vw,112px)/.92 'Lexend', sans-serif;
+  letter-spacing:-.075em;
 }
 
 .cta p{
@@ -1118,7 +1119,6 @@ button{
 
 <a class="nav-cta" href="#contact">request an itinerary ↗</a>
 
-
   </div>
 </nav>
 
@@ -1155,230 +1155,233 @@ button{
 
   <div class="globe-graphic">
 
-    <svg class="globe-svg" viewBox="0 0 620 620" xmlns="http://www.w3.org/2000/svg">
 
-      <defs>
+<svg class="globe-svg" viewBox="0 0 620 620" xmlns="http://www.w3.org/2000/svg">
 
-        <radialGradient id="globeGlow">
-          <stop offset="0%" stop-color="#c7a56a" stop-opacity=".12"/>
-          <stop offset="55%" stop-color="#c7a56a" stop-opacity=".025"/>
-          <stop offset="100%" stop-color="#c7a56a" stop-opacity="0"/>
-        </radialGradient>
+  <defs>
 
-        <filter id="softGlow">
-          <feGaussianBlur stdDeviation="5"/>
-        </filter>
+    <radialGradient id="globeGlow">
+      <stop offset="0%" stop-color="#c7a56a" stop-opacity=".12"/>
+      <stop offset="55%" stop-color="#c7a56a" stop-opacity=".025"/>
+      <stop offset="100%" stop-color="#c7a56a" stop-opacity="0"/>
+    </radialGradient>
 
-      </defs>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+
+  </defs>
+
+  <circle
+    cx="310"
+    cy="310"
+    r="270"
+    fill="url(#globeGlow)"
+  />
+
+  <circle
+    class="globe-shell"
+    cx="310"
+    cy="310"
+    r="225"
+  />
+
+  <ellipse
+    class="globe-latitude"
+    cx="310"
+    cy="310"
+    rx="225"
+    ry="78"
+  />
+
+  <ellipse
+    class="globe-latitude"
+    cx="310"
+    cy="310"
+    rx="225"
+    ry="150"
+  />
+
+  <ellipse
+    class="globe-latitude"
+    cx="310"
+    cy="310"
+    rx="225"
+    ry="35"
+  />
+
+  <ellipse
+    class="globe-longitude"
+    cx="310"
+    cy="310"
+    rx="80"
+    ry="225"
+  />
+
+  <ellipse
+    class="globe-longitude"
+    cx="310"
+    cy="310"
+    rx="155"
+    ry="225"
+  />
+
+  <ellipse
+    class="globe-longitude"
+    cx="310"
+    cy="310"
+    rx="205"
+    ry="225"
+  />
+
+  <ellipse
+    class="globe-equator"
+    cx="310"
+    cy="310"
+    rx="225"
+    ry="7"
+  />
+
+  <path
+    class="flight-orbit"
+    d="M100 285 C145 90 385 25 510 150 C610 250 525 475 300 510 C125 535 40 410 100 285"
+  />
+
+  <path
+    class="flight-orbit-bright"
+    d="M100 285 C145 90 385 25 510 150 C610 250 525 475 300 510 C125 535 40 410 100 285"
+  />
+
+  <circle
+    class="location-ring"
+    cx="174"
+    cy="202"
+    r="13"
+  />
+
+  <circle
+    class="location-dot"
+    cx="174"
+    cy="202"
+    r="3"
+  />
+
+  <circle
+    class="location-ring"
+    cx="447"
+    cy="401"
+    r="13"
+  />
+
+  <circle
+    class="location-dot"
+    cx="447"
+    cy="401"
+    r="3"
+  />
+
+  <g class="flight-plane-wrap">
+
+    <g class="flight-plane">
 
       <circle
-        cx="310"
-        cy="310"
-        r="270"
-        fill="url(#globeGlow)"
-      />
-
-      <circle
-        class="globe-shell"
-        cx="310"
-        cy="310"
-        r="225"
-      />
-
-      <ellipse
-        class="globe-latitude"
-        cx="310"
-        cy="310"
-        rx="225"
-        ry="78"
-      />
-
-      <ellipse
-        class="globe-latitude"
-        cx="310"
-        cy="310"
-        rx="225"
-        ry="150"
-      />
-
-      <ellipse
-        class="globe-latitude"
-        cx="310"
-        cy="310"
-        rx="225"
-        ry="35"
-      />
-
-      <ellipse
-        class="globe-longitude"
-        cx="310"
-        cy="310"
-        rx="80"
-        ry="225"
-      />
-
-      <ellipse
-        class="globe-longitude"
-        cx="310"
-        cy="310"
-        rx="155"
-        ry="225"
-      />
-
-      <ellipse
-        class="globe-longitude"
-        cx="310"
-        cy="310"
-        rx="205"
-        ry="225"
-      />
-
-      <ellipse
-        class="globe-equator"
-        cx="310"
-        cy="310"
-        rx="225"
-        ry="7"
+        class="plane-glow"
+        cx="19"
+        cy="19"
+        r="13"
+        filter="url(#softGlow)"
       />
 
       <path
-        class="flight-orbit"
-        d="M100 285 C145 90 385 25 510 150 C610 250 525 475 300 510 C125 535 40 410 100 285"
+        class="plane-core"
+        d="M19 2
+           C20.7 2 22 3.5 22 5.2
+           L22 15
+           L34 20
+           C35.5 20.7 36 22.5 34.7 23.5
+           L22 22
+           L22 34
+           C22 36 20.7 37 19 37
+           C17.3 37 16 36 16 34
+           L16 22
+           L3.3 23.5
+           C2 22.5 2.5 20.7 4 20
+           L16 15
+           L16 5.2
+           C16 3.5 17.3 2 19 2Z"
       />
 
       <path
-        class="flight-orbit-bright"
-        d="M100 285 C145 90 385 25 510 150 C610 250 525 475 300 510 C125 535 40 410 100 285"
+        class="plane-wing"
+        d="M16 16
+           L5 11
+           L3 12.5
+           L16 21Z"
       />
 
-      <circle
-        class="location-ring"
-        cx="174"
-        cy="202"
-        r="13"
+      <path
+        class="plane-wing"
+        d="M22 16
+           L33 11
+           L35 12.5
+           L22 21Z"
       />
 
-      <circle
-        class="location-dot"
-        cx="174"
-        cy="202"
-        r="3"
-      />
+    </g>
 
-      <circle
-        class="location-ring"
-        cx="447"
-        cy="401"
-        r="13"
-      />
+  </g>
 
-      <circle
-        class="location-dot"
-        cx="447"
-        cy="401"
-        r="3"
-      />
+</svg>
 
-      <g class="flight-plane-wrap">
-
-        <g class="flight-plane">
-
-          <circle
-            class="plane-glow"
-            cx="19"
-            cy="19"
-            r="13"
-            filter="url(#softGlow)"
-          />
-
-          <path
-            class="plane-core"
-            d="M19 2
-               C20.7 2 22 3.5 22 5.2
-               L22 15
-               L34 20
-               C35.5 20.7 36 22.5 34.7 23.5
-               L22 22
-               L22 34
-               C22 36 20.7 37 19 37
-               C17.3 37 16 36 16 34
-               L16 22
-               L3.3 23.5
-               C2 22.5 2.5 20.7 4 20
-               L16 15
-               L16 5.2
-               C16 3.5 17.3 2 19 2Z"
-          />
-
-          <path
-            class="plane-wing"
-            d="M16 16
-               L5 11
-               L3 12.5
-               L16 21Z"
-          />
-
-          <path
-            class="plane-wing"
-            d="M22 16
-               L33 11
-               L35 12.5
-               L22 21Z"
-          />
-
-        </g>
-
-      </g>
-
-    </svg>
 
   </div>
 
   <div class="hero-panel">
 
-    <div class="panel-label">
-      charter intelligence
-    </div>
 
-    <div class="route">
+<div class="panel-label">
+  charter intelligence
+</div>
 
-      <div>
-        <strong>LHR</strong>
-        <small>London</small>
-      </div>
+<div class="route">
 
-      <div class="route-line"></div>
+  <div>
+    <strong>LHR</strong>
+    <small>London</small>
+  </div>
 
-      <div style="text-align:right">
-        <strong>JFK</strong>
-        <small>New York</small>
-      </div>
+  <div class="route-line"></div>
 
-    </div>
-
-    <div class="panel-meta">
-
-      <div class="meta">
-        <b>7h 25m</b>
-        <span>estimated flight</span>
-      </div>
-
-      <div class="meta">
-        <b>14</b>
-        <span>passengers</span>
-      </div>
-
-      <div class="meta">
-        <b>Global 7500</b>
-        <span>recommended</span>
-      </div>
-
-    </div>
-
+  <div style="text-align:right">
+    <strong>JFK</strong>
+    <small>New York</small>
   </div>
 
 </div>
 
+<div class="panel-meta">
+
+  <div class="meta">
+    <b>7h 25m</b>
+    <span>estimated flight</span>
+  </div>
+
+  <div class="meta">
+    <b>14</b>
+    <span>passengers</span>
+  </div>
+
+  <div class="meta">
+    <b>Global 7500</b>
+    <span>recommended</span>
+  </div>
+
+</div>
+
+
+  </div>
+
+</div>
 
   </div>
 
@@ -1409,85 +1412,89 @@ button{
 
   <article class="jet-card reveal">
 
-    <div class="jet-no">
-      01 / ultra long range
-    </div>
 
-    <div class="jet-title">
-      <h3>
-        Bombardier<br>
-        Global 7500
-      </h3>
+<div class="jet-no">
+  01 / ultra long range
+</div>
 
-      <p>
-        The flagship for journeys where distance, privacy and an exceptional cabin matter most.
-      </p>
-    </div>
+<div class="jet-title">
+  <h3>
+    Bombardier<br>
+    Global 7500
+  </h3>
 
-    <div class="specs">
+  <p>
+    The flagship for journeys where distance, privacy and an exceptional cabin matter most.
+  </p>
+</div>
 
-      <div class="spec">
-        <b>7,700 nm</b>
-        <span>range</span>
-      </div>
+<div class="specs">
 
-      <div class="spec">
-        <b>19</b>
-        <span>passengers</span>
-      </div>
+  <div class="spec">
+    <b>7,700 nm</b>
+    <span>range</span>
+  </div>
 
-      <div class="spec">
-        <b>4</b>
-        <span>cabin zones</span>
-      </div>
+  <div class="spec">
+    <b>19</b>
+    <span>passengers</span>
+  </div>
 
-    </div>
+  <div class="spec">
+    <b>4</b>
+    <span>cabin zones</span>
+  </div>
 
-    <a class="view" href="#contact">
-      view aircraft <span>↗</span>
-    </a>
+</div>
+
+<a class="view" href="#contact">
+  view aircraft <span>↗</span>
+</a>
+
 
   </article>
 
   <div class="fleet-side">
 
-    <article class="jet-card jet-small reveal">
 
-      <div class="jet-no">
-        02 / heavy jet
-      </div>
+<article class="jet-card jet-small reveal">
 
-      <div class="jet-title">
-        <h3>Gulfstream G650ER</h3>
-        <p>
-          Long-range performance with a cabin designed around quiet productivity.
-        </p>
-      </div>
+  <div class="jet-no">
+    02 / heavy jet
+  </div>
 
-      <a class="view" href="#contact">
-        view aircraft <span>↗</span>
-      </a>
+  <div class="jet-title">
+    <h3>Gulfstream G650ER</h3>
+    <p>
+      Long-range performance with a cabin designed around quiet productivity.
+    </p>
+  </div>
 
-    </article>
+  <a class="view" href="#contact">
+    view aircraft <span>↗</span>
+  </a>
 
-    <article class="jet-card jet-small reveal">
+</article>
 
-      <div class="jet-no">
-        03 / super midsize
-      </div>
+<article class="jet-card jet-small reveal">
 
-      <div class="jet-title">
-        <h3>Praetor 600</h3>
-        <p>
-          Efficient, elegant and perfectly suited to transatlantic and regional travel.
-        </p>
-      </div>
+  <div class="jet-no">
+    03 / super midsize
+  </div>
 
-      <a class="view" href="#contact">
-        view aircraft <span>↗</span>
-      </a>
+  <div class="jet-title">
+    <h3>Praetor 600</h3>
+    <p>
+      Efficient, elegant and perfectly suited to transatlantic and regional travel.
+    </p>
+  </div>
 
-    </article>
+  <a class="view" href="#contact">
+    view aircraft <span>↗</span>
+  </a>
+
+</article>
+
 
   </div>
 
@@ -1548,9 +1555,12 @@ button{
       03 · beyond the aircraft
     </div>
 
-    <h2>
-      the flight is only part of it.
-    </h2>
+
+<h2>
+  the flight is only part of it.
+</h2>
+
+
   </div>
 
   <p class="section-intro">
@@ -1587,7 +1597,6 @@ button{
 
 </div>
 
-
   </div>
 
 </section>
@@ -1595,7 +1604,6 @@ button{
 <section class="section" style="background:#0b1016">
 
   <div class="container journey">
-
 
 <div class="journey-copy reveal">
 
@@ -1662,7 +1670,6 @@ button{
 
   <div class="container trust-row">
 
-
 <span>operational confidence</span>
 
 <strong>
@@ -1673,7 +1680,6 @@ button{
   available 24 / 7 / 365
 </span>
 
-
   </div>
 
 </div>
@@ -1681,7 +1687,6 @@ button{
 <section class="cta" id="contact">
 
   <div class="container reveal">
-
 
 <div class="kicker">
   05 · your next departure
@@ -1708,7 +1713,7 @@ button{
   <div class="container footer-row">
 
 <span>
-  © 2026 AH-S™ Digital Boutique. All rights reserved.
+  © 2026 J'Air Charter. All rights reserved.
 </span>
 
 <span>
