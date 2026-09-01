@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="en-GB">
 <head>
@@ -22,7 +23,9 @@
 }
 
 *{box-sizing:border-box}
+
 html{scroll-behavior:smooth}
+
 body{
   margin:0;
   background:var(--ink);
@@ -30,13 +33,22 @@ body{
   font-family:'DM Sans',sans-serif;
   overflow-x:hidden
 }
-a{text-decoration:none;color:inherit}
-button{font:inherit}
+
+a{
+  text-decoration:none;
+  color:inherit
+}
+
+button{
+  font:inherit
+}
 
 .container{
   width:min(calc(100% - 56px),var(--max));
   margin:auto
 }
+
+/* NAVIGATION */
 
 .nav{
   position:fixed;
@@ -66,7 +78,9 @@ button{font:inherit}
   letter-spacing:-.07em
 }
 
-.logo span{color:var(--gold)}
+.logo span{
+  color:var(--gold)
+}
 
 .nav-links{
   display:flex;
@@ -77,7 +91,9 @@ button{font:inherit}
   letter-spacing:.12em
 }
 
-.nav-links a:hover{color:#fff}
+.nav-links a:hover{
+  color:#fff
+}
 
 .nav-cta{
   border:1px solid #ffffff2b;
@@ -401,7 +417,8 @@ button{font:inherit}
 .jet-title h3{
   font:600 42px/.95 'Manrope';
   letter-spacing:-.07em;
-  margin:0 0 10px
+  margin:0 0 10px;
+  color:var(--white)
 }
 
 .jet-title p{
@@ -681,7 +698,7 @@ button{font:inherit}
   padding-top:22px
 }
 
-/* ANIMATION */
+/* REVEAL */
 
 .reveal{
   opacity:0;
@@ -869,9 +886,7 @@ button{font:inherit}
       <a href="#contact">charter</a>
     </div>
 
-    <a class="nav-cta" href="#contact">
-      request an itinerary ↗
-    </a>
+    <a class="nav-cta" href="#contact">request an itinerary ↗</a>
   </div>
 </nav>
 
@@ -896,22 +911,15 @@ button{font:inherit}
       </p>
 
       <div class="hero-actions">
-        <a class="btn gold" href="#contact">
-          arrange a flight ↗
-        </a>
-
-        <a class="btn" href="#fleet">
-          explore the fleet
-        </a>
+        <a class="btn gold" href="#contact">arrange a flight ↗</a>
+        <a class="btn" href="#fleet">explore the fleet</a>
       </div>
 
     </div>
 
     <div class="hero-panel reveal">
 
-      <div class="panel-label">
-        charter intelligence
-      </div>
+      <div class="panel-label">charter intelligence</div>
 
       <div class="route">
 
@@ -952,9 +960,7 @@ button{font:inherit}
 
   </div>
 
-  <div class="scroll">
-    scroll to explore ↓
-  </div>
+  <div class="scroll">scroll to explore ↓</div>
 
 </header>
 
@@ -979,21 +985,13 @@ button{font:inherit}
 
       <article class="jet-card reveal">
 
-        <div class="jet-no">
-          01 / ultra long range
-        </div>
+        <div class="jet-no">01 / ultra long range</div>
 
         <div class="jet-title">
-
-          <h3>
-            Bombardier<br>
-            Global 7500
-          </h3>
-
+          <h3>Bombardier<br>Global 7500</h3>
           <p>
             The flagship for journeys where distance, privacy and an exceptional cabin matter most.
           </p>
-
         </div>
 
         <div class="specs">
@@ -1025,18 +1023,13 @@ button{font:inherit}
 
         <article class="jet-card jet-small reveal">
 
-          <div class="jet-no">
-            02 / heavy jet
-          </div>
+          <div class="jet-no">02 / heavy jet</div>
 
           <div class="jet-title">
-
             <h3>Gulfstream G650ER</h3>
-
             <p>
               Long-range performance with a cabin designed around quiet productivity.
             </p>
-
           </div>
 
           <a class="view" href="#contact">
@@ -1047,18 +1040,13 @@ button{font:inherit}
 
         <article class="jet-card jet-small reveal">
 
-          <div class="jet-no">
-            03 / super midsize
-          </div>
+          <div class="jet-no">03 / super midsize</div>
 
           <div class="jet-title">
-
             <h3>Praetor 600</h3>
-
             <p>
               Efficient, elegant and perfectly suited to transatlantic and regional travel.
             </p>
-
           </div>
 
           <a class="view" href="#contact">
@@ -1087,13 +1075,9 @@ button{font:inherit}
 
     <div class="reveal">
 
-      <div class="kicker">
-        02 · the J'Air standard
-      </div>
+      <div class="kicker">02 · the J'Air standard</div>
 
-      <h2>
-        private aviation should feel invisible.
-      </h2>
+      <h2>private aviation should feel invisible.</h2>
 
       <p>
         Not because nothing happens. Because everything has already been handled.
@@ -1120,13 +1104,8 @@ button{font:inherit}
     <div class="section-top reveal">
 
       <div>
-        <div class="kicker">
-          03 · beyond the aircraft
-        </div>
-
-        <h2>
-          the flight is only part of it.
-        </h2>
+        <div class="kicker">03 · beyond the aircraft</div>
+        <h2>the flight is only part of it.</h2>
       </div>
 
       <p class="section-intro">
@@ -1173,9 +1152,7 @@ button{font:inherit}
 
     <div class="journey-copy reveal">
 
-      <div class="kicker">
-        04 · how it works
-      </div>
+      <div class="kicker">04 · how it works</div>
 
       <h2>
         one conversation.<br>
@@ -1242,9 +1219,7 @@ button{font:inherit}
       Safety first · discreet service · global reach
     </strong>
 
-    <span>
-      available 24 / 7 / 365
-    </span>
+    <span>available 24 / 7 / 365</span>
 
   </div>
 
@@ -1254,13 +1229,9 @@ button{font:inherit}
 
   <div class="container reveal">
 
-    <div class="kicker">
-      05 · your next departure
-    </div>
+    <div class="kicker">05 · your next departure</div>
 
-    <h2>
-      where would you like to go?
-    </h2>
+    <h2>where would you like to go?</h2>
 
     <p>
       Send us the outline. We'll return with the aircraft, routing and itinerary that make sense for you.
@@ -1278,45 +1249,34 @@ button{font:inherit}
 
   <div class="container footer-row">
 
-    <span>
-      © 2026 J'Air Charter. All rights reserved.
-    </span>
+    <span>© 2026 J'Air Charter. All rights reserved.</span>
 
-    <span>
-      Private aviation, precisely arranged.
-    </span>
+    <span>Private aviation, precisely arranged.</span>
 
   </div>
 
 </footer>
 
 <script>
-
 const nav=document.getElementById('nav');
 
-addEventListener(
-  'scroll',
-  ()=>nav.classList.toggle('scrolled',scrollY>30),
-  {passive:true}
-);
+addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>30)
+},{passive:true});
 
 const observer=new IntersectionObserver(
-  entries=>entries.forEach(
-    e=>{
-      if(e.isIntersecting){
-        e.target.classList.add('show');
-        observer.unobserve(e.target)
-      }
+  entries=>entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('show');
+      observer.unobserve(e.target);
     }
-  ),
+  }),
   {threshold:.12}
 );
 
-document
-  .querySelectorAll('.reveal')
-  .forEach(el=>observer.observe(el));
-
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 </script>
 
 </body>
 </html>
+```
