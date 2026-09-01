@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="AURELIA™ Private Wealth Architecture. We don't manage wealth. We engineer legacy.">
+<meta name="theme-color" content="#080807">
+<title>AURELIA™ | Private Wealth Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+
+<style>
+:root{
+  --black:#080807;
+  --deep:#0d0d0b;
+  --panel:#11110f;
+  --cream:#ede8dd;
+  --gold:#c9a76a;
+  --gold2:#e0c58b;
+  --muted:#85837d;
+  --soft:#b8b3a9;
+  --line:#ffffff16;
+  --max:1380px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto;scrollbar-width:none}
+html::-webkit-scrollbar{display:none}
+body{
+  margin:0;
+  background:var(--black);
+  color:#f7f3eb;
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
+  cursor:none;
+}
+body.loading{overflow:hidden}
+a{text-decoration:none;color:inherit}
+button{font:inherit;color:inherit}
+::selection{background:var(--gold);color:var(--black)}
+.container{width:min(calc(100% - 64px),var(--max));margin:auto}
+
+/* PRELOADER */
+.preloader{
+  position:fixed;inset:0;background:var(--black);z-index:9999;
+  display:grid;place-items:center;overflow:hidden;
+}
+.preloader-inner{text-align:center}
+.preloader-mark{
+  font:600 42px/1 'Manrope';letter-spacing:-.08em;
+  opacity:0;transform:translateY(20px)
+}
+.preloader-mark span{color:var(--gold)}
+.preloader-line{
+  width:180px;height:1px;background:#ffffff18;margin:22px auto 0;overflow:hidden
+}
+.preloader-line i{display:block;width:0;height:100%;background:var(--gold)}
+
+/* CURSOR */
+.cursor,.cursor-ring{
+  position:fixed;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);
+  border-radius:50%;
+}
+.cursor{width:5px;height:5px;background:var(--gold);box-shadow:0 0 18px #c9a76a}
+.cursor-ring{
+  width:34px;height:34px;border:1px solid #ffffff66;transition:width .25s,height .25s,border-color .25s
+}
+.cursor-ring.active{width:58px;height:58px;border-color:var(--gold)}
+.cursor-label{
+  position:fixed;pointer-events:none;z-index:10001;font-size:8px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold);opacity:0;transform:translate(18px,18px)
+}
+
+/* NAV */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;padding:26px 0;
+  transition:.5s ease;
+}
+.nav.scrolled{
+  padding:14px 0;background:#080807d9;backdrop-filter:blur(22px);
+  border-bottom:1px solid var(--line)
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{font:600 24px 'Manrope';letter-spacing:-.08em}
+.logo span{color:var(--gold)}
+.nav-centre{display:flex;gap:36px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#aaa69d}
+.nav-centre a{position:relative;padding:8px 0}
+.nav-centre a:after{
+  content:"";position:absolute;left:0;bottom:2px;width:0;height:1px;background:var(--gold);transition:.3s
+}
+.nav-centre a:hover:after{width:100%}
+.nav-contact{
+  display:inline-flex;align-items:center;gap:12px;border:1px solid #ffffff29;border-radius:999px;
+  padding:11px 16px;font-size:9px;letter-spacing:.12em;text-transform:uppercase
+}
+.nav-contact i{width:5px;height:5px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.nav-contact:hover{background:#fff;color:#080807}
+
+/* HERO */
+.hero{
+  min-height:100svh;position:relative;display:flex;align-items:center;
+  overflow:hidden;background:
+  radial-gradient(circle at 67% 44%,#2b2417 0%,transparent 24%),
+  radial-gradient(circle at 82% 15%,#17160f 0%,transparent 30%),
+  var(--black);
+}
+.hero-noise{
+  position:absolute;inset:-50%;opacity:.012;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+  animation:noise .18s steps(2) infinite
+}
+@keyframes noise{0%{transform:translate(0,0)}25%{transform:translate(2%,-1%)}50%{transform:translate(-1%,2%)}75%{transform:translate(1%,1%)}100%{transform:translate(0,0)}}
+.hero-grid{
+  width:100%;position:relative;z-index:3;display:grid;grid-template-columns:1.08fr .92fr;
+  gap:50px;align-items:center;padding:80px 48px 0
+}
+.hero-copy{max-width:850px}
+.overline{
+  display:flex;align-items:center;gap:12px;color:#aaa69e;font-size:9px;
+  text-transform:uppercase;letter-spacing:.25em
+}
+.overline i{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 20px var(--gold)}
+.hero-title{
+  font:500 clamp(68px,9.5vw,148px)/.82 'Manrope';
+  letter-spacing:-.09em;margin:27px 0 32px
+}
+.hero-title .line{display:block;overflow:hidden}
+.hero-title .line span{display:block;transform:translateY(110%)}
+.hero-title em{
+  font-family:'Playfair Display',serif;font-weight:500;font-style:italic;
+  letter-spacing:-.07em;color:#d8c29b
+}
+.hero-text{
+  max-width:520px;color:#98958e;font-size:14px;line-height:1.9;
+  opacity:0;transform:translateY(20px)
+}
+.hero-actions{display:flex;gap:10px;margin-top:30px;opacity:0;transform:translateY(20px)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  padding:15px 21px;border-radius:999px;border:1px solid #ffffff22;
+  font-size:9px;text-transform:uppercase;letter-spacing:.14em;transition:.35s
+}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#0c0b09}
+.btn:hover{transform:translateY(-4px);box-shadow:0 15px 40px #0008}
+.btn span{font-size:13px}
+
+/* HERO ARCHITECTURAL ICONOGRAPHY */
+.hero-visual{
+  height:650px;position:relative;display:grid;place-items:center
+}
+.orb{
+  width:min(44vw,590px);aspect-ratio:1;border-radius:50%;position:relative;
+  display:grid;place-items:center;
+  background:radial-gradient(circle at 50% 50%,#c9a76a0a 0%,transparent 58%);
+  transform:scale(.84);opacity:0;
+}
+.orb:before{
+  content:"";position:absolute;width:68%;aspect-ratio:1;
+  border:1px solid #c9a76a42;
+  transform:rotate(45deg);
+}
+.orb:after{
+  content:"";position:absolute;width:82%;aspect-ratio:1;
+  border:1px solid #ffffff13;
+  transform:rotate(45deg);
+}
+.aurelia-mark{
+  position:absolute;width:58%;aspect-ratio:1;
+  transform:rotate(45deg);
+}
+.mark-frame{
+  position:absolute;inset:0;
+  border:1px solid #c9a76a55;
+}
+.mark-frame.one{inset:12%}
+.mark-frame.two{
+  inset:25%;
+  border-color:#ffffff22;
+}
+.mark-frame.three{
+  inset:39%;
+  border-color:#c9a76a70;
+}
+.mark-axis{
+  position:absolute;background:#c9a76a38;
+}
+.mark-axis.x{
+  left:-17%;right:-17%;top:50%;height:1px;
+}
+.mark-axis.y{
+  top:-17%;bottom:-17%;left:50%;width:1px;
+}
+.mark-axis.diagonal-one{
+  width:141%;height:1px;
+  left:-20%;top:50%;
+  transform:rotate(45deg);
+  background:#ffffff13;
+}
+.mark-axis.diagonal-two{
+  width:141%;height:1px;
+  left:-20%;top:50%;
+  transform:rotate(-45deg);
+  background:#ffffff13;
+}
+.mark-core{
+  position:absolute;left:50%;top:50%;
+  width:18px;height:18px;
+  transform:translate(-50%,-50%) rotate(45deg);
+  border:1px solid var(--gold);
+  background:#0b0a08;
+  box-shadow:0 0 30px #c9a76a35;
+}
+.mark-core:after{
+  content:"";position:absolute;inset:5px;
+  background:var(--gold);
+}
+.mark-node{
+  position:absolute;width:6px;height:6px;border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 18px #c9a76a88;
+}
+.mark-node.n1{left:-3px;top:50%;transform:translateY(-50%)}
+.mark-node.n2{right:-3px;top:50%;transform:translateY(-50%)}
+.mark-node.n3{left:50%;top:-3px;transform:translateX(-50%)}
+.mark-node.n4{left:50%;bottom:-3px;transform:translateX(-50%)}
+.mark-label{
+  position:absolute;
+  font:500 7px 'Manrope';
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:#77736b;
+}
+.mark-label.l1{left:50%;top:-34px;transform:translateX(-50%)}
+.mark-label.l2{right:-78px;top:50%;transform:translateY(-50%)}
+.mark-label.l3{left:50%;bottom:-34px;transform:translateX(-50%)}
+.mark-label.l4{left:-78px;top:50%;transform:translateY(-50%)}
+
+.hero-card{
+  position:absolute;right:2%;bottom:7%;width:310px;padding:21px;
+  background:#12110ee8;border:1px solid #ffffff1c;border-radius:20px;
+  backdrop-filter:blur(18px);box-shadow:0 30px 80px #0008;
+  opacity:0;transform:translateY(30px)
+}
+.card-top{display:flex;justify-content:space-between;align-items:center}
+.card-label{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:#88857e}
+.live{display:flex;align-items:center;gap:6px;font-size:7px;color:#a9a59b;text-transform:uppercase;letter-spacing:.15em}
+.live i{width:5px;height:5px;background:#78a87c;border-radius:50%;box-shadow:0 0 10px #78a87c}
+.card-number{font:500 49px/1 'Manrope';letter-spacing:-.08em;margin:25px 0 5px}
+.card-number small{font:10px 'DM Sans';letter-spacing:.1em;color:#77746e;text-transform:uppercase}
+.card-meta{display:flex;justify-content:space-between;border-top:1px solid #ffffff12;padding-top:13px;margin-top:17px}
+.card-meta span{font-size:8px;color:#77746e;text-transform:uppercase;letter-spacing:.12em}
+.scroll-mark{
+  position:absolute;left:32px;bottom:25px;z-index:4;display:flex;align-items:center;gap:12px;
+  color:#66635e;font-size:8px;letter-spacing:.2em;text-transform:uppercase
+}
+.scroll-mark i{display:block;width:55px;height:1px;background:#ffffff25;position:relative}
+.scroll-mark i:after{content:"";position:absolute;left:0;top:0;width:18px;height:1px;background:var(--gold);animation:scrollLine 2s ease-in-out infinite}
+@keyframes scrollLine{50%{width:55px}100%{width:18px}}
+
+/* MARQUEE */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:#0b0b09}
+.marquee-track{display:flex;width:max-content;animation:marquee 26s linear infinite}
+.marquee-item{display:flex;align-items:center;gap:35px;padding:22px 35px;color:#68665f;font:500 10px 'Manrope';letter-spacing:.22em;text-transform:uppercase;white-space:nowrap}
+.marquee-item b{color:var(--gold);font-size:8px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* INTRO */
+.section{padding:150px 0}
+.intro{background:var(--cream);color:#11110f;position:relative;overflow:hidden}
+.intro:before{
+  content:"A";position:absolute;right:-4vw;top:-15vw;font:500 70vw/1 'Playfair Display';
+  color:#e1dbce;opacity:.6;pointer-events:none
+}
+.intro-grid{position:relative;z-index:2;display:grid;grid-template-columns:.65fr 1.35fr;gap:100px}
+.section-kicker{font-size:9px;color:#9a7b48;text-transform:uppercase;letter-spacing:.23em}
+.intro-statement{
+  font:500 clamp(42px,6vw,86px)/.95 'Manrope';letter-spacing:-.075em;margin:0;
+}
+.intro-statement em{font-family:'Playfair Display';font-style:italic;color:#927344}
+.intro-body{max-width:620px;margin-left:auto}
+.intro-body p{font-size:15px;line-height:2;color:#66635e;margin:0 0 24px}
+.intro-signature{font:italic 26px 'Playfair Display';color:#80643a;margin-top:45px}
+
+/* PHILOSOPHY */
+.philosophy{background:#0b0b09;overflow:hidden}
+.philosophy-head{display:flex;justify-content:space-between;align-items:end;gap:50px;margin-bottom:85px}
+.dark-title{font:500 clamp(50px,7vw,100px)/.88 'Manrope';letter-spacing:-.085em;margin:15px 0 0}
+.dark-title em{font-family:'Playfair Display';font-style:italic;color:#cdb481}
+.dark-intro{max-width:360px;color:#706e68;font-size:12px;line-height:1.8}
+.principles{border-top:1px solid var(--line)}
+.principle{
+  display:grid;grid-template-columns:80px 1fr 1fr;gap:40px;padding:42px 0;
+  border-bottom:1px solid var(--line);align-items:start;transition:.5s
+}
+.principle:hover{padding-left:20px;background:linear-gradient(90deg,#ffffff05,transparent)}
+.principle-num{color:var(--gold);font:500 11px 'Manrope'}
+.principle h3{font:500 32px 'Manrope';letter-spacing:-.05em;margin:0}
+.principle p{max-width:440px;color:#706e68;font-size:11px;line-height:1.8;margin:0}
+
+/* ARCHITECTURE */
+.architecture{background:#0d0d0b}
+.arch-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:70px}
+.arch-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:250px;gap:14px}
+.arch-card{
+  position:relative;overflow:hidden;border:1px solid var(--line);background:#11110f;
+  padding:28px;display:flex;flex-direction:column;justify-content:space-between;
+  transition:transform .6s cubic-bezier(.2,.7,.2,1),border-color .4s
+}
+.arch-card:hover{border-color:#c9a76a55;transform:translateY(-8px)}
+.arch-card:nth-child(1){grid-column:span 7;grid-row:span 2}
+.arch-card:nth-child(2){grid-column:span 5}
+.arch-card:nth-child(3){grid-column:span 5}
+.arch-card:nth-child(4){grid-column:span 4}
+.arch-card:nth-child(5){grid-column:span 8}
+.arch-num{font:500 10px 'Manrope';color:var(--gold)}
+.arch-card h3{font:500 31px/.95 'Manrope';letter-spacing:-.06em;margin:0;max-width:350px}
+.arch-card p{font-size:10px;line-height:1.7;color:#6f6d67;max-width:350px}
+.arch-art{position:absolute;right:-50px;top:30px;width:320px;height:320px;border:1px solid #c9a76a30;border-radius:50%}
+.arch-art:before,.arch-art:after{content:"";position:absolute;border:1px solid #ffffff0d;border-radius:50%}
+.arch-art:before{inset:35px}.arch-art:after{inset:90px}
+.arch-card:nth-child(2) .arch-art{width:190px;height:190px;top:-40px;right:-25px}
+.arch-card:nth-child(3) .arch-art{width:220px;height:220px;top:50px;right:-80px;border-radius:0;transform:rotate(45deg)}
+.arch-card:nth-child(4) .arch-art{width:160px;height:160px;right:20px;top:55px;border-radius:0;transform:rotate(45deg)}
+.arch-card:nth-child(5) .arch-art{width:500px;height:180px;right:-100px;top:20px;border-radius:50%;transform:rotate(-12deg)}
+.arch-card:hover .arch-art{animation:spin 8s linear infinite}
+@keyframes spin{to{transform:rotate(405deg)}}
+
+/* NUMBERS */
+.numbers{background:#080807;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.number-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.number-cell{padding:60px 35px;border-right:1px solid var(--line)}
+.number-cell:first-child{padding-left:0}.number-cell:last-child{border-right:0}
+.number{font:500 clamp(45px,5vw,76px)/1 'Manrope';letter-spacing:-.08em;color:#eee9df}
+.number sup{font-size:20px;color:var(--gold);vertical-align:top}
+.number-label{margin-top:12px;color:#66635d;font-size:8px;letter-spacing:.18em;text-transform:uppercase}
+
+/* GLOBAL */
+.global{background:var(--cream);color:#11110f;overflow:hidden}
+.global-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;align-items:center}
+.global h2{font:500 clamp(52px,7vw,98px)/.88 'Manrope';letter-spacing:-.085em;margin:15px 0 25px}
+.global h2 em{font-family:'Playfair Display';font-style:italic;color:#927344}
+.global-copy{max-width:450px;color:#69655e;font-size:13px;line-height:1.9}
+.globe-map{height:580px;position:relative;display:grid;place-items:center}
+.map-sphere{
+  width:480px;height:480px;border-radius:50%;border:1px solid #9c835d55;position:relative;
+  box-shadow:inset 20px 0 80px #0000000c
+}
+.map-sphere:before,.map-sphere:after{
+  content:"";position:absolute;border:1px solid #9c835d38;border-radius:50%
+}
+.map-sphere:before{inset:0 105px}.map-sphere:after{inset:105px 0}
+.lat{position:absolute;left:0;right:0;top:50%;border-top:1px solid #9c835d28}
+.map-line{position:absolute;width:600px;height:220px;border:1px solid #9c835d66;border-radius:50%;transform:rotate(-18deg)}
+.map-line.two{width:550px;height:170px;transform:rotate(22deg);border-color:#11110f22}
+.pin{position:absolute;width:8px;height:8px;border-radius:50%;background:#927344;box-shadow:0 0 0 5px #92734422,0 0 30px #92734488}
+.pin.p1{left:28%;top:38%}.pin.p2{left:56%;top:30%}.pin.p3{left:72%;top:58%}.pin.p4{left:47%;top:68%}
+.map-label{position:absolute;font:500 8px 'Manrope';letter-spacing:.16em;text-transform:uppercase;color:#827763}
+.map-label.l1{left:17%;top:29%}.map-label.l2{left:58%;top:21%}.map-label.l3{left:75%;top:64%}
+
+/* PROCESS */
+.process{background:#0d0d0b}
+.process-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:100px}
+.process-sticky{position:sticky;top:130px;height:max-content}
+.process-title{font:500 clamp(50px,6vw,88px)/.9 'Manrope';letter-spacing:-.08em;margin:15px 0 25px}
+.process-title em{font-family:'Playfair Display';font-style:italic;color:#cdb481}
+.process-copy{color:#706e68;max-width:390px;font-size:12px;line-height:1.9}
+.process-list{border-top:1px solid var(--line)}
+.process-item{
+  min-height:210px;padding:30px 0;border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:55px 1fr auto;gap:25px;align-items:start
+}
+.process-item .n{color:var(--gold);font:500 10px 'Manrope'}
+.process-item h3{font:500 27px 'Manrope';letter-spacing:-.05em;margin:0 0 10px}
+.process-item p{font-size:10px;color:#706e68;line-height:1.8;max-width:420px;margin:0}
+.process-item b{font:400 10px 'Manrope';color:#4d4b46}
+
+/* TESTIMONIAL */
+.testimonial{background:#11110f;position:relative;overflow:hidden}
+.testimonial:before{
+  content:"“";position:absolute;right:7%;top:-8%;font:500 45vw/.8 'Playfair Display';
+  color:#ffffff05
+}
+.testimonial-inner{position:relative;z-index:2;max-width:1050px}
+.testimonial blockquote{
+  font:500 clamp(38px,5.2vw,72px)/1.08 'Manrope';letter-spacing:-.065em;margin:25px 0 45px
+}
+.testimonial blockquote em{font-family:'Playfair Display';font-style:italic;color:#cdb481}
+.testimonial-source{display:flex;align-items:center;gap:14px;color:#77746d;font-size:9px;text-transform:uppercase;letter-spacing:.16em}
+.testimonial-source i{display:block;width:35px;height:1px;background:var(--gold)}
+
+/* CTA */
+.final-cta{
+  min-height:100svh;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 50%,#2c2519 0,transparent 25%),
+    radial-gradient(circle at 50% 0,#17140e 0,transparent 48%),#080807
+}
+.final-orbit{position:absolute;width:65vw;max-width:900px;aspect-ratio:1;border:1px solid #c9a76a1c;border-radius:50%}
+.final-orbit:before,.final-orbit:after{content:"";position:absolute;inset:8%;border:1px solid #ffffff08;border-radius:50%}
+.final-orbit:after{inset:25%}
+.final-dot{position:absolute;width:7px;height:7px;background:var(--gold);border-radius:50%;box-shadow:0 0 30px var(--gold);left:15%;top:31%}
+.final-content{position:relative;z-index:2}
+.final-title{font:500 clamp(60px,9vw,130px)/.82 'Manrope';letter-spacing:-.09em;margin:18px auto 30px;max-width:1100px}
+.final-title em{font-family:'Playfair Display';font-style:italic;color:#d3ba88}
+.final-copy{max-width:460px;margin:0 auto 30px;color:#77746d;font-size:12px;line-height:1.9}
+
+/* FOOTER */
+.footer{padding:40px 0 65px;background:#080807;color:#5f5c56}
+.footer-main{display:flex;justify-content:space-between;gap:50px;padding-bottom:50px}
+.footer-logo{font:500 30px 'Manrope';letter-spacing:-.08em;color:#e9e4da}
+.footer-logo span{color:var(--gold)}
+.footer-tag{font-size:10px;line-height:1.7;margin-top:12px;max-width:260px}
+.footer-links{display:flex;gap:70px}
+.footer-col strong{display:block;color:#8b877e;font-size:8px;text-transform:uppercase;letter-spacing:.18em;margin-bottom:17px}
+.footer-col a{display:block;font-size:10px;margin-bottom:10px;color:#67645e}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;gap:20px;font-size:8px;color:#4f4d48}
+
+/* REVEALS */
+.reveal{opacity:0;transform:translateY(45px)}
+.line-reveal{overflow:hidden}.line-reveal span{display:block;transform:translateY(110%)}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  body{cursor:auto}.cursor,.cursor-ring,.cursor-label{display:none}
+  .nav-centre{display:none}
+  .container{width:min(calc(100% - 40px),var(--max))}
+  .hero-grid{grid-template-columns:1fr;align-items:end;padding-top:120px;padding-bottom:80px;padding-left:28px;padding-right:28px}
+  .hero-visual{height:420px;order:2}
+  .orb{width:min(70vw,470px)}
+  .hero-card{right:4%;bottom:0}
+  .intro-grid,.global-grid,.process-layout{grid-template-columns:1fr;gap:55px}
+  .intro-body{margin-left:0}
+  .globe-map{height:480px}
+  .principle{grid-template-columns:55px 1fr;gap:20px}
+  .principle p{grid-column:2}
+  .arch-grid{grid-template-columns:1fr 1fr;grid-auto-rows:260px}
+  .arch-card:nth-child(n){grid-column:span 1;grid-row:span 1}
+  .arch-card:first-child,.arch-card:last-child{grid-column:span 2}
+  .number-grid{grid-template-columns:1fr 1fr}
+  .number-cell:nth-child(2){border-right:0}
+  .number-cell{padding:45px 25px}
+  .number-cell:first-child{padding-left:0}
+  .process-sticky{position:relative;top:auto}
+}
+@media(max-width:600px){
+  .container{width:calc(100% - 28px)}
+  .nav{padding:17px 0}
+  .nav-contact{padding:9px 12px}
+  .logo{font-size:21px}
+  .hero-title{font-size:clamp(58px,16vw,90px)}
+  .hero-text{font-size:13px}
+  .hero-actions{flex-direction:column}.btn{width:100%}
+  .hero-visual{height:340px}
+  .orb{width:78vw}
+  .hero-card{width:260px;right:0}
+  .card-number{font-size:39px}
+  .section{padding:100px 0}
+  .intro-grid{gap:40px}
+  .intro-statement{font-size:43px}
+  .philosophy-head,.arch-head{display:block}
+  .dark-intro{margin-top:25px}
+  .principle{grid-template-columns:35px 1fr;padding:30px 0}
+  .principle h3{font-size:24px}
+  .arch-grid{display:flex;flex-direction:column}
+  .arch-card{min-height:260px}
+  .number-grid{grid-template-columns:1fr 1fr}
+  .number-cell{padding:35px 15px}.number-cell:nth-child(odd){padding-left:0}
+  .number-cell:nth-child(even){border-right:0}
+  .number{font-size:43px}
+  .globe-map{height:360px}.map-sphere{width:310px;height:310px}.map-line{width:390px;height:140px}
+  .process-item{grid-template-columns:35px 1fr auto;gap:12px;min-height:190px}
+  .process-item h3{font-size:23px}
+  .testimonial blockquote{font-size:37px}
+  .footer-main{display:block}.footer-links{margin-top:45px;gap:40px}
+  .footer-bottom{display:block}.footer-bottom span{display:block;margin-bottom:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition:none!important}
+  body{cursor:auto}.cursor,.cursor-ring,.cursor-label{display:none}
+}
+</style>
+</head>
+
+<body class="loading">
+
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-mark">AURELIA<span>™</span></div>
+    <div class="preloader-line"><i></i></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-label" id="cursorLabel">Explore</div>
+
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="logo magnetic" href="#">AURELIA<span>™</span></a>
+    <div class="nav-centre">
+      <a href="#philosophy">philosophy</a>
+      <a href="#architecture">architecture</a>
+      <a href="#approach">approach</a>
+      <a href="#contact">contact</a>
+    </div>
+    <a class="nav-contact magnetic" href="#contact"><i></i> private office</a>
+  </div>
+</nav>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="hero-noise"></div>
+  <div class="hero-grid container">
+    <div class="hero-copy">
+      <div class="overline"><i></i> private wealth architecture · worldwide</div>
+      <h1 class="hero-title">
+        <span class="line"><span>wealth,</span></span>
+        <span class="line"><span>with a <em>future.</em></span></span>
+      </h1>
+      <p class="hero-text">
+        AURELIA designs sophisticated wealth structures for families who think beyond a balance sheet.
+        Capital, governance and legacy, architected as one.
+      </p>
+      <div class="hero-actions">
+        <a class="btn gold magnetic" href="#contact">enter the private office <span>↗</span></a>
+        <a class="btn magnetic" href="#philosophy">discover AURELIA</a>
+      </div>
+    </div>
+
+    <div class="hero-visual" id="heroVisual">
+      <div class="orb" id="heroOrb">
+        <div class="aurelia-mark">
+          <div class="mark-frame"></div>
+          <div class="mark-frame one"></div>
+          <div class="mark-frame two"></div>
+          <div class="mark-frame three"></div>
+
+          <div class="mark-axis x"></div>
+          <div class="mark-axis y"></div>
+          <div class="mark-axis diagonal-one"></div>
+          <div class="mark-axis diagonal-two"></div>
+
+          <div class="mark-core"></div>
+
+          <div class="mark-node n1"></div>
+          <div class="mark-node n2"></div>
+          <div class="mark-node n3"></div>
+          <div class="mark-node n4"></div>
+
+          <div class="mark-label l1">capital</div>
+          <div class="mark-label l2">governance</div>
+          <div class="mark-label l3">legacy</div>
+          <div class="mark-label l4">continuity</div>
+        </div>
+      </div>
+
+      <div class="hero-card" id="heroCard">
+        <div class="card-top">
+          <span class="card-label">private office / 01</span>
+          <span class="live"><i></i> active</span>
+        </div>
+        <div class="card-number">£2.4<span style="font-size:.55em">bn</span></div>
+        <small style="font-size:8px;color:#77746e;text-transform:uppercase;letter-spacing:.13em">capital under architecture</small>
+        <div class="card-meta">
+          <span>families</span><span>global</span><span>independent</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-mark"><i></i> scroll to enter</div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="marquee-item">private wealth architecture <b>✦</b> independent by design</div>
+    <div class="marquee-item">family governance <b>✦</b> global perspective</div>
+    <div class="marquee-item">long-term thinking <b>✦</b> absolute discretion</div>
+    <div class="marquee-item">private wealth architecture <b>✦</b> independent by design</div>
+    <div class="marquee-item">family governance <b>✦</b> global perspective</div>
+    <div class="marquee-item">long-term thinking <b>✦</b> absolute discretion</div>
+  </div>
+</div>
+
+<section class="section intro" id="about">
+  <div class="container intro-grid">
+    <div class="reveal">
+      <div class="section-kicker">01 · the premise</div>
+    </div>
+    <div class="intro-body reveal">
+      <h2 class="intro-statement">
+        Money is an asset.<br>
+        <em>Legacy is an architecture.</em>
+      </h2>
+      <p>
+        The greatest fortunes are rarely defined by what they own. They are defined by how deliberately
+        they are structured, governed and transferred.
+      </p>
+      <p>
+        AURELIA works at the intersection of capital, family and time. We bring clarity to complex
+        decisions and build frameworks designed to remain intelligent across generations.
+      </p>
+      <div class="intro-signature">For what comes next.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section philosophy" id="philosophy">
+  <div class="container">
+    <div class="philosophy-head reveal">
+      <div>
+        <div class="section-kicker">02 · philosophy</div>
+        <h2 class="dark-title">the <em>quiet</em><br>advantage.</h2>
+      </div>
+      <p class="dark-intro">We believe exceptional private wealth advice should be felt in the quality of decisions, not the volume of noise surrounding them.</p>
+    </div>
+
+    <div class="principles">
+      <article class="principle reveal">
+        <div class="principle-num">01</div>
+        <h3>Think in generations.</h3>
+        <p>We look beyond quarterly outcomes. Every recommendation is tested against the decades and generations it may ultimately need to serve.</p>
+      </article>
+      <article class="principle reveal">
+        <div class="principle-num">02</div>
+        <h3>Complexity deserves clarity.</h3>
+        <p>Cross-border structures, family governance, liquidity and succession can become opaque quickly. Our job is to make the architecture understandable.</p>
+      </article>
+      <article class="principle reveal">
+        <div class="principle-num">03</div>
+        <h3>Independence is a discipline.</h3>
+        <p>We begin with the requirement, not a product. The structure follows the objective, rather than the other way around.</p>
+      </article>
+      <article class="principle reveal">
+        <div class="principle-num">04</div>
+        <h3>Discretion is part of the service.</h3>
+        <p>Private means private. Communication is deliberate, access is controlled and every relationship is handled with exceptional care.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section architecture" id="architecture">
+  <div class="container">
+    <div class="arch-head reveal">
+      <div>
+        <div class="section-kicker">03 · the architecture</div>
+        <h2 class="dark-title">everything<br><em>connected.</em></h2>
+      </div>
+      <p class="dark-intro">A private wealth strategy should never be a collection of disconnected products. We architect the system around the family.</p>
+    </div>
+
+    <div class="arch-grid">
+      <article class="arch-card reveal">
+        <span class="arch-num">01 / capital</span>
+        <div class="arch-art"></div>
+        <div><h3>Capital strategy</h3><p>Portfolio architecture, liquidity planning and long-term capital allocation built around your objectives.</p></div>
+      </article>
+      <article class="arch-card reveal">
+        <span class="arch-num">02 / governance</span>
+        <div class="arch-art"></div>
+        <div><h3>Family governance</h3><p>Structures that turn shared values into clear decision-making.</p></div>
+      </article>
+      <article class="arch-card reveal">
+        <span class="arch-num">03 / succession</span>
+        <div class="arch-art"></div>
+        <div><h3>Legacy planning</h3><p>Preparing wealth for the people who inherit both its opportunity and responsibility.</p></div>
+      </article>
+      <article class="arch-card reveal">
+        <span class="arch-num">04 / global</span>
+        <div class="arch-art"></div>
+        <div><h3>Global structures</h3><p>Cross-border thinking for families with a genuinely international footprint.</p></div>
+      </article>
+      <article class="arch-card reveal">
+        <span class="arch-num">05 / continuity</span>
+        <div class="arch-art"></div>
+        <div><h3>The architecture evolves.</h3><p>Markets change. Families change. Your structure should be designed to adapt without losing its underlying intent.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="numbers">
+  <div class="container number-grid">
+    <div class="number-cell reveal"><div class="number"><span data-count="28">0</span><sup>+</sup></div><div class="number-label">countries connected</div></div>
+    <div class="number-cell reveal"><div class="number"><span data-count="42">0</span></div><div class="number-label">family relationships</div></div>
+    <div class="number-cell reveal"><div class="number"><span data-count="19">0</span></div><div class="number-label">years thinking ahead</div></div>
+    <div class="number-cell reveal"><div class="number"><span data-count="1">0</span></div><div class="number-label">standard: exceptional</div></div>
+  </div>
+</section>
+
+<section class="section global" id="global">
+  <div class="container global-grid">
+    <div class="reveal">
+      <div class="section-kicker">04 · global perspective</div>
+      <h2>one family.<br><em>many horizons.</em></h2>
+      <p class="global-copy">
+        Modern wealth rarely sits in one place. Neither should your thinking.
+        AURELIA brings an international perspective to families whose lives, businesses and ambitions cross borders.
+      </p>
+    </div>
+    <div class="globe-map reveal">
+      <div class="map-sphere">
+        <div class="lat"></div>
+        <div class="map-line"></div>
+        <div class="map-line two"></div>
+        <div class="pin p1"></div><div class="pin p2"></div><div class="pin p3"></div><div class="pin p4"></div>
+        <div class="map-label l1">London</div><div class="map-label l2">Dubai</div><div class="map-label l3">Singapore</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section process" id="approach">
+  <div class="container process-layout">
+    <div class="process-sticky reveal">
+      <div class="section-kicker">05 · the relationship</div>
+      <h2 class="process-title">one conversation.<br><em>then clarity.</em></h2>
+      <p class="process-copy">No pitch deck. No product carousel. We start with your world, understand what matters and map the architecture from there.</p>
+    </div>
+
+    <div class="process-list">
+      <article class="process-item reveal">
+        <span class="n">01</span><div><h3>Listen</h3><p>We understand the family, the business, the capital and the ambitions behind the numbers.</p></div><b>01</b>
+      </article>
+      <article class="process-item reveal">
+        <span class="n">02</span><div><h3>Map</h3><p>We identify dependencies, risks, opportunities and structural gaps across the existing landscape.</p></div><b>02</b>
+      </article>
+      <article class="process-item reveal">
+        <span class="n">03</span><div><h3>Architect</h3><p>A coherent framework is developed around the family's priorities, with specialists brought in where required.</p></div><b>03</b>
+      </article>
+      <article class="process-item reveal">
+        <span class="n">04</span><div><h3>Implement</h3><p>The strategy moves from paper into reality through careful coordination and controlled execution.</p></div><b>04</b>
+      </article>
+      <article class="process-item reveal">
+        <span class="n">05</span><div><h3>Evolve</h3><p>Because a family office should not be static. We continue to challenge the architecture as circumstances change.</p></div><b>05</b>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section testimonial">
+  <div class="container testimonial-inner reveal">
+    <div class="section-kicker">06 · perspective</div>
+    <blockquote>“AURELIA gave our family something more valuable than another investment idea: <em>a framework for making better decisions together.</em>”</blockquote>
+    <div class="testimonial-source"><i></i> principal · private family office · london</div>
+  </div>
+</section>
+
+<section class="final-cta" id="contact">
+  <div class="final-orbit" id="finalOrbit"><div class="final-dot"></div></div>
+  <div class="final-content container reveal">
+    <div class="section-kicker">07 · the next chapter</div>
+    <h2 class="final-title">build what<br><em>outlasts you.</em></h2>
+    <p class="final-copy">A private conversation is the beginning. Tell us where you are going. We will help you understand what needs to exist when you arrive.</p>
+    <a class="btn gold magnetic" href="mailto:office@aurelia.example">request a private conversation <span>↗</span></a>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-main">
+      <div>
+        <div class="footer-logo">AURELIA<span>™</span></div>
+        <div class="footer-tag">Private wealth architecture for families building beyond the present.</div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col"><strong>Explore</strong><a href="#philosophy">Philosophy</a><a href="#architecture">Architecture</a><a href="#approach">Approach</a></div>
+        <div class="footer-col"><strong>Private office</strong><a href="#contact">Contact</a><a href="#contact">Enquire</a><a href="#contact">Global offices</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AURELIA™. All rights reserved.</span>
+      <span>Private wealth architecture · for illustrative purposes only.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const preloader = document.getElementById('preloader');
+  const mark = document.querySelector('.preloader-mark');
+  const bar = document.querySelector('.preloader-line i');
+
+  function revealPage(){
+    if(reduced){
+      preloader.style.display='none';
+      document.body.classList.remove('loading');
+      document.querySelectorAll('.line span').forEach(el=>el.style.transform='none');
+      document.querySelectorAll('.hero-text,.hero-actions').forEach(el=>{el.style.opacity=1;el.style.transform='none'});
+      document.getElementById('heroOrb').style.opacity=1;
+      document.getElementById('heroOrb').style.transform='none';
+      document.getElementById('heroCard').style.opacity=1;
+      document.getElementById('heroCard').style.transform='none';
+      return;
+    }
+    const tl=gsap.timeline({
+      onComplete:()=>document.body.classList.remove('loading')
+    });
+    tl.to(mark,{opacity:1,y:0,duration:.7,ease:'power3.out'})
+      .to(bar,{width:'100%',duration:1,ease:'power2.inOut'},'-=.3')
+      .to(preloader,{clipPath:'inset(0 0 100% 0)',duration:1,ease:'power4.inOut'},'+=.15')
+      .fromTo('.hero-title .line span',{y:'110%'},{y:0,duration:1.1,stagger:.12,ease:'power4.out'},'-=.55')
+      .to('.hero-text',{opacity:1,y:0,duration:.8,ease:'power3.out'},'-=.55')
+      .to('.hero-actions',{opacity:1,y:0,duration:.8,ease:'power3.out'},'-=.65')
+      .to('#heroOrb',{opacity:1,scale:1,duration:1.4,ease:'power3.out'},'-=1')
+      .to('#heroCard',{opacity:1,y:0,duration:1,ease:'power3.out'},'-=.8');
+  }
+
+  if(document.readyState==='complete') setTimeout(revealPage,150);
+  else window.addEventListener('load',()=>setTimeout(revealPage,150),{once:true});
+
+  if(!reduced){
+    gsap.registerPlugin(ScrollTrigger);
+
+    const lenis = new Lenis({duration:1.15,smoothWheel:true});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(time=>lenis.raf(time*1000));
+    gsap.ticker.lagSmoothing(0);
+
+    const nav=document.getElementById('nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+
+    gsap.utils.toArray('.reveal').forEach(el=>{
+      gsap.fromTo(el,
+        {autoAlpha:0,y:45},
+        {autoAlpha:1,y:0,duration:1,ease:'power3.out',
+          scrollTrigger:{trigger:el,start:'top 88%',once:true}
+        }
+      );
+    });
+
+    gsap.to('#heroOrb',{
+      y:-80,rotate:8,
+      scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}
+    });
+
+    gsap.to('#heroCard',{
+      y:-120,rotate:-2,
+      scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1.2}
+    });
+
+    gsap.to('.intro:before',{
+      y:220,rotate:8,
+      scrollTrigger:{trigger:'.intro',start:'top bottom',end:'bottom top',scrub:1}
+    });
+
+    gsap.to('.map-line',{
+      rotation:350,
+      scrollTrigger:{trigger:'.global',start:'top bottom',end:'bottom top',scrub:2}
+    });
+
+    gsap.to('#finalOrbit',{
+      rotation:80,
+      scrollTrigger:{trigger:'.final-cta',start:'top bottom',end:'bottom top',scrub:2}
+    });
+
+    document.querySelectorAll('[data-count]').forEach(el=>{
+      const target=+el.dataset.count;
+      const obj={v:0};
+      gsap.to(obj,{
+        v:target,duration:2,ease:'power2.out',
+        scrollTrigger:{trigger:el,start:'top 90%',once:true},
+        onUpdate:()=>el.textContent=Math.round(obj.v)
+      });
+    });
+
+    const cursor=document.getElementById('cursor');
+    const ring=document.getElementById('cursorRing');
+    const label=document.getElementById('cursorLabel');
+    let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+    window.addEventListener('mousemove',e=>{
+      mx=e.clientX;my=e.clientY;
+      gsap.to(cursor,{x:mx,y:my,duration:.08,ease:'none'});
+      gsap.to(label,{x:mx,y:my,duration:.25,ease:'power2.out'});
+    });
+    gsap.ticker.add(()=>{
+      rx+=(mx-rx)*.13;ry+=(my-ry)*.13;
+      gsap.set(ring,{x:rx,y:ry});
+    });
+
+    document.querySelectorAll('a,.magnetic').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{
+        ring.classList.add('active');
+        if(el.classList.contains('magnetic')) label.style.opacity=1;
+      });
+      el.addEventListener('mouseleave',()=>{
+        ring.classList.remove('active');
+        label.style.opacity=0;
+        gsap.to(el,{x:0,y:0,duration:.4,ease:'elastic.out(1,.5)'});
+      });
+      el.addEventListener('mousemove',e=>{
+        if(!el.classList.contains('magnetic')) return;
+        const r=el.getBoundingClientRect();
+        const x=(e.clientX-r.left-r.width/2)*.16;
+        const y=(e.clientY-r.top-r.height/2)*.16;
+        gsap.to(el,{x,y,duration:.35,ease:'power3.out'});
+      });
+    });
+
+    const visual=document.getElementById('heroVisual');
+    visual.addEventListener('mousemove',e=>{
+      const r=visual.getBoundingClientRect();
+      const x=(e.clientX-r.left-r.width/2)/r.width;
+      const y=(e.clientY-r.top-r.height/2)/r.height;
+      gsap.to('#heroOrb',{x:x*20,y:y*20,duration:.8,ease:'power2.out'});
+      gsap.to('#heroCard',{x:x*-14,y:y*-10,duration:.8,ease:'power2.out'});
+    });
+    visual.addEventListener('mouseleave',()=>{
+      gsap.to('#heroOrb',{x:0,y:0,duration:1,ease:'power3.out'});
+      gsap.to('#heroCard',{x:0,y:0,duration:1,ease:'power3.out'});
+    });
+  } else {
+    document.getElementById('nav').classList.remove('scrolled');
+  }
+})();
+</script>
+</body>
+</html>
