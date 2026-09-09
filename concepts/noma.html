@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Velo | Money, in motion.</title>
-  <meta name="description" content="Velo is the financial platform built for businesses that move money at speed.">
+  <title>Noma | Money, in motion.</title>
+  <meta name="description" content="Noma is the financial platform built for businesses that move money at speed.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +22,7 @@
       --blue: #315cff;
       --line: #d9d9d5;
       --muted: #747470;
+      --soft: #ecece8;
       --green: #4fbd77;
     }
 
@@ -57,6 +58,7 @@
       color: var(--white);
     }
 
+
     /* ------------------------------
        NAV
     ------------------------------ */
@@ -80,9 +82,9 @@
 
     .logo {
       font-family: "Azeret Mono", monospace;
-      font-size: 17px;
-      font-weight: 600;
-      letter-spacing: -.06em;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -.07em;
     }
 
     .nav-links {
@@ -98,6 +100,7 @@
       border: 1px solid rgba(255,255,255,.45);
       border-radius: 100px;
     }
+
 
     /* ------------------------------
        HERO
@@ -123,7 +126,7 @@
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: .08em;
-      margin-bottom: 42px;
+      margin-bottom: 38px;
     }
 
     .eyebrow-dot {
@@ -150,7 +153,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 40px;
       align-items: end;
-      margin-top: 100px;
+      margin-top: 90px;
     }
 
     .hero-copy {
@@ -191,8 +194,9 @@
       transform: translateY(-2px);
     }
 
+
     /* ------------------------------
-       PRODUCT
+       PRODUCT DASHBOARD
     ------------------------------ */
 
     .product-stage {
@@ -221,8 +225,8 @@
       font-family: "Azeret Mono", monospace;
       color: #fff;
       font-size: 12px;
-      font-weight: 600;
-      letter-spacing: -.04em;
+      font-weight: 500;
+      letter-spacing: -.05em;
     }
 
     .window-user {
@@ -307,8 +311,9 @@
       font-size: 10px;
     }
 
+
     /* ------------------------------
-       REAL CHART
+       CHART
     ------------------------------ */
 
     .chart {
@@ -331,14 +336,15 @@
 
     .chart-svg {
       position: absolute;
-      inset: 18px 0 12px;
+      inset: 20px 0 15px;
       width: 100%;
-      height: calc(100% - 30px);
+      height: calc(100% - 35px);
       overflow: visible;
     }
 
     .chart-area {
       fill: url(#chartGradient);
+      opacity: .18;
     }
 
     .chart-path {
@@ -347,6 +353,11 @@
       stroke-width: 2.5;
       stroke-linecap: round;
       stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .chart-point {
+      fill: var(--blue);
     }
 
     .chart-end {
@@ -354,6 +365,7 @@
       stroke: #111;
       stroke-width: 4;
     }
+
 
     /* ------------------------------
        TRANSACTIONS
@@ -402,6 +414,7 @@
       color: white;
     }
 
+
     /* ------------------------------
        STATEMENT
     ------------------------------ */
@@ -423,8 +436,9 @@
       color: #aaa;
     }
 
+
     /* ------------------------------
-       SPLIT PRODUCT BLOCK
+       SPEND
     ------------------------------ */
 
     .split {
@@ -476,10 +490,6 @@
       overflow: hidden;
     }
 
-    /* ------------------------------
-       CARD
-    ------------------------------ */
-
     .payment-card {
       width: min(480px, 78%);
       aspect-ratio: 1.58;
@@ -509,8 +519,8 @@
     .card-logo {
       font-family: "Azeret Mono", monospace;
       font-size: 16px;
-      font-weight: 600;
-      letter-spacing: -.05em;
+      font-weight: 500;
+      letter-spacing: -.06em;
     }
 
     .card-chip {
@@ -528,6 +538,7 @@
       margin-top: 28px;
       color: #bbb;
     }
+
 
     /* ------------------------------
        PRODUCT LIST
@@ -596,6 +607,7 @@
       text-align: right;
     }
 
+
     /* ------------------------------
        DARK STATEMENT
     ------------------------------ */
@@ -653,6 +665,7 @@
       line-height: 1.55;
     }
 
+
     /* ------------------------------
        SECURITY
     ------------------------------ */
@@ -699,6 +712,7 @@
       max-width: 400px;
     }
 
+
     /* ------------------------------
        FINAL CTA
     ------------------------------ */
@@ -739,6 +753,7 @@
       color: var(--black);
     }
 
+
     /* ------------------------------
        FOOTER
     ------------------------------ */
@@ -760,13 +775,14 @@
     .footer-logo {
       font-family: "Azeret Mono", monospace;
       font-size: 17px;
-      font-weight: 600;
-      letter-spacing: -.05em;
+      font-weight: 500;
+      letter-spacing: -.06em;
     }
 
     .footer-note {
       color: rgba(255,255,255,.65);
     }
+
 
     /* ------------------------------
        RESPONSIVE
@@ -847,6 +863,7 @@
       }
     }
 
+
     @media (max-width: 600px) {
 
       nav {
@@ -870,11 +887,11 @@
 
       .hero h1 {
         font-size: clamp(64px, 19vw, 105px);
-        line-height: 1.04;
+        line-height: 1.03;
       }
 
       .hero-bottom {
-        margin-top: 75px;
+        margin-top: 70px;
       }
 
       .hero-copy {
@@ -961,14 +978,17 @@
   </style>
 </head>
 
+
 <body>
+
 
   <!-- NAV -->
 
   <nav>
+
     <div class="nav-inner">
 
-      <a href="#" class="logo">Velo</a>
+      <a href="#" class="logo">Noma</a>
 
       <div class="nav-links">
         <a href="#platform">Platform</a>
@@ -977,6 +997,7 @@
       </div>
 
     </div>
+
   </nav>
 
 
@@ -1000,6 +1021,7 @@
 
       </div>
 
+
       <div class="hero-bottom">
 
         <p class="hero-copy">
@@ -1008,6 +1030,7 @@
         </p>
 
         <div class="hero-actions">
+
           <a href="#contact" class="button button-dark">
             Open an account
           </a>
@@ -1015,6 +1038,7 @@
           <a href="#platform" class="button button-light">
             See how it works
           </a>
+
         </div>
 
       </div>
@@ -1022,7 +1046,7 @@
     </section>
 
 
-    <!-- PRODUCT -->
+    <!-- PRODUCT DASHBOARD -->
 
     <section class="product-stage" id="platform">
 
@@ -1031,7 +1055,7 @@
         <div class="window-top">
 
           <div class="window-brand">
-            Velo
+            Noma
           </div>
 
           <div class="window-user">
@@ -1042,6 +1066,7 @@
 
 
         <div class="dashboard">
+
 
           <aside class="sidebar">
 
@@ -1087,6 +1112,7 @@
 
           <div class="dashboard-main">
 
+
             <div class="dashboard-heading">
 
               <div>
@@ -1108,7 +1134,7 @@
             </div>
 
 
-            <!-- ACTUAL FINANCIAL CHART -->
+            <!-- ACTUAL SVG CHART -->
 
             <div class="chart">
 
@@ -1147,18 +1173,20 @@
                 </defs>
 
 
+                <!-- Chart fill -->
+
                 <path
                   class="chart-area"
                   d="
-                    M 0 158
-                    C 45 151, 82 142, 125 146
-                    C 170 150, 205 123, 250 129
-                    C 298 136, 330 111, 375 116
-                    C 420 121, 462 96, 510 103
-                    C 555 110, 590 84, 635 91
-                    C 680 98, 720 70, 765 76
-                    C 810 82, 850 53, 895 61
-                    C 930 67, 965 39, 1000 30
+                    M 0 156
+                    C 45 150, 80 139, 120 143
+                    C 160 147, 200 126, 245 130
+                    C 290 134, 330 109, 375 115
+                    C 420 121, 460 95, 505 102
+                    C 550 109, 585 83, 630 88
+                    C 675 93, 720 68, 765 73
+                    C 810 78, 850 54, 895 60
+                    C 940 66, 970 39, 1000 30
                     L 1000 200
                     L 0 200
                     Z
@@ -1166,21 +1194,49 @@
                 />
 
 
+                <!-- Chart line -->
+
                 <path
                   class="chart-path"
                   d="
-                    M 0 158
-                    C 45 151, 82 142, 125 146
-                    C 170 150, 205 123, 250 129
-                    C 298 136, 330 111, 375 116
-                    C 420 121, 462 96, 510 103
-                    C 555 110, 590 84, 635 91
-                    C 680 98, 720 70, 765 76
-                    C 810 82, 850 53, 895 61
-                    C 930 67, 965 39, 1000 30
+                    M 0 156
+                    C 45 150, 80 139, 120 143
+                    C 160 147, 200 126, 245 130
+                    C 290 134, 330 109, 375 115
+                    C 420 121, 460 95, 505 102
+                    C 550 109, 585 83, 630 88
+                    C 675 93, 720 68, 765 73
+                    C 810 78, 850 54, 895 60
+                    C 940 66, 970 39, 1000 30
                   "
                 />
 
+
+                <!-- Selected data points -->
+
+                <circle
+                  class="chart-point"
+                  cx="245"
+                  cy="130"
+                  r="3"
+                />
+
+                <circle
+                  class="chart-point"
+                  cx="505"
+                  cy="102"
+                  r="3"
+                />
+
+                <circle
+                  class="chart-point"
+                  cx="765"
+                  cy="73"
+                  r="3"
+                />
+
+
+                <!-- Current position -->
 
                 <circle
                   class="chart-end"
@@ -1199,9 +1255,19 @@
             <div class="transactions">
 
               <div class="transactions-header">
-                <span>Transaction</span>
-                <span>Status</span>
-                <span style="text-align:right;">Amount</span>
+
+                <span>
+                  Transaction
+                </span>
+
+                <span>
+                  Status
+                </span>
+
+                <span style="text-align:right;">
+                  Amount
+                </span>
+
               </div>
 
 
@@ -1273,7 +1339,7 @@
       <p>
         Banking was built around
         <span>institutions.</span>
-        Velo is built around
+        Noma is built around
         <span>how businesses actually move.</span>
       </p>
 
@@ -1308,7 +1374,7 @@
         <div class="payment-card">
 
           <div class="card-logo">
-            Velo
+            Noma
           </div>
 
           <div class="card-chip"></div>
@@ -1448,7 +1514,7 @@
     </section>
 
 
-    <!-- DIFFERENCE -->
+    <!-- DARK STATEMENT -->
 
     <section class="dark-section">
 
@@ -1488,7 +1554,7 @@
 
             <p>
               From the first payment to the thousandth,
-              Velo is designed to make moving money feel effortless.
+              Noma is designed to make moving money feel effortless.
             </p>
 
           </div>
@@ -1505,6 +1571,7 @@
     <section class="security" id="security">
 
       <div class="security-grid">
+
 
         <div class="security-intro">
 
@@ -1582,7 +1649,7 @@
     </section>
 
 
-    <!-- FINAL -->
+    <!-- FINAL CTA -->
 
     <section class="final" id="contact">
 
@@ -1595,7 +1662,7 @@
       <div class="final-bottom">
 
         <p class="final-copy">
-          Velo is financial infrastructure for businesses
+          Noma is financial infrastructure for businesses
           ready to leave traditional banking behind.
         </p>
 
@@ -1617,7 +1684,7 @@
     <div class="footer-inner">
 
       <div class="footer-logo">
-        Velo
+        Noma
       </div>
 
       <div class="footer-note">
