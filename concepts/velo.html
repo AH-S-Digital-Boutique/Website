@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Velo | Money, in motion.</title>
+  <meta name="description" content="Velo is the financial platform built for businesses that move money at speed.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #f7f7f4;
+      --blue: #315cff;
+      --line: #d9d9d5;
+      --muted: #747470;
+      --green: #4fbd77;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: "Inter", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    ::selection {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* ------------------------------
+       NAV
+    ------------------------------ */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 22px 28px;
+      mix-blend-mode: difference;
+      color: white;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: "Azeret Mono", monospace;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -.06em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .nav-cta {
+      padding: 10px 17px;
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 100px;
+    }
+
+    /* ------------------------------
+       HERO
+    ------------------------------ */
+
+    .hero {
+      min-height: 100vh;
+      padding: 150px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-top {
+      max-width: 1450px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 42px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    .hero h1 {
+      max-width: 1150px;
+      font-size: clamp(76px, 11vw, 175px);
+      line-height: 1.02;
+      letter-spacing: -.085em;
+      font-weight: 600;
+    }
+
+    .hero h1 span {
+      color: var(--blue);
+    }
+
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: end;
+      margin-top: 100px;
+    }
+
+    .hero-copy {
+      max-width: 440px;
+      font-size: 18px;
+      line-height: 1.45;
+      letter-spacing: -.025em;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: .25s ease;
+    }
+
+    .button-dark {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .button-light {
+      border: 1px solid var(--line);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    /* ------------------------------
+       PRODUCT
+    ------------------------------ */
+
+    .product-stage {
+      padding: 0 28px 28px;
+    }
+
+    .product-window {
+      background: #111;
+      border-radius: 24px;
+      min-height: 690px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .window-top {
+      height: 58px;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #292929;
+      color: #aaa;
+    }
+
+    .window-brand {
+      font-family: "Azeret Mono", monospace;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: -.04em;
+    }
+
+    .window-user {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #303030;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 10px;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      min-height: 632px;
+    }
+
+    .sidebar {
+      border-right: 1px solid #292929;
+      padding: 26px 15px;
+    }
+
+    .side-label {
+      font-family: "DM Mono", monospace;
+      color: #666;
+      font-size: 9px;
+      text-transform: uppercase;
+      margin: 10px 11px 14px;
+    }
+
+    .side-item {
+      padding: 10px 11px;
+      border-radius: 8px;
+      color: #858585;
+      font-size: 12px;
+      margin-bottom: 3px;
+    }
+
+    .side-item.active {
+      background: #202020;
+      color: white;
+    }
+
+    .dashboard-main {
+      padding: 42px;
+    }
+
+    .dashboard-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 45px;
+    }
+
+    .dashboard-heading small {
+      display: block;
+      color: #777;
+      font-family: "DM Mono", monospace;
+      font-size: 9px;
+      margin-bottom: 9px;
+      text-transform: uppercase;
+    }
+
+    .balance {
+      color: white;
+      font-size: clamp(38px, 4vw, 62px);
+      letter-spacing: -.065em;
+      font-weight: 500;
+    }
+
+    .balance span {
+      color: #666;
+    }
+
+    .date-select {
+      border: 1px solid #303030;
+      border-radius: 7px;
+      padding: 9px 12px;
+      color: #aaa;
+      font-size: 10px;
+    }
+
+    /* ------------------------------
+       REAL CHART
+    ------------------------------ */
+
+    .chart {
+      height: 245px;
+      border-top: 1px solid #292929;
+      border-bottom: 1px solid #292929;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chart-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(#202020 1px, transparent 1px),
+        linear-gradient(90deg, #202020 1px, transparent 1px);
+      background-size: 20% 25%;
+      opacity: .7;
+    }
+
+    .chart-svg {
+      position: absolute;
+      inset: 18px 0 12px;
+      width: 100%;
+      height: calc(100% - 30px);
+      overflow: visible;
+    }
+
+    .chart-area {
+      fill: url(#chartGradient);
+    }
+
+    .chart-path {
+      fill: none;
+      stroke: var(--blue);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .chart-end {
+      fill: var(--blue);
+      stroke: #111;
+      stroke-width: 4;
+    }
+
+    /* ------------------------------
+       TRANSACTIONS
+    ------------------------------ */
+
+    .transactions {
+      margin-top: 30px;
+    }
+
+    .transactions-header,
+    .transaction {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .transactions-header {
+      padding-bottom: 12px;
+      color: #555;
+      font-family: "DM Mono", monospace;
+      font-size: 8px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #292929;
+    }
+
+    .transaction {
+      padding: 17px 0;
+      border-bottom: 1px solid #222;
+      font-size: 11px;
+      color: #aaa;
+    }
+
+    .transaction-name {
+      color: #eee;
+    }
+
+    .transaction-status {
+      color: var(--green);
+      font-family: "DM Mono", monospace;
+      font-size: 9px;
+    }
+
+    .transaction-amount {
+      text-align: right;
+      color: white;
+    }
+
+    /* ------------------------------
+       STATEMENT
+    ------------------------------ */
+
+    .statement {
+      padding: 190px 28px;
+      max-width: 1500px;
+    }
+
+    .statement p {
+      max-width: 1220px;
+      font-size: clamp(48px, 7vw, 104px);
+      line-height: .94;
+      letter-spacing: -.075em;
+      font-weight: 500;
+    }
+
+    .statement p span {
+      color: #aaa;
+    }
+
+    /* ------------------------------
+       SPLIT PRODUCT BLOCK
+    ------------------------------ */
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .split-copy {
+      padding: 100px 28px;
+      border-right: 1px solid var(--line);
+    }
+
+    .mono-label {
+      font-family: "DM Mono", monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin-bottom: 70px;
+    }
+
+    .split h2 {
+      max-width: 550px;
+      font-size: clamp(44px, 5.5vw, 80px);
+      line-height: .9;
+      letter-spacing: -.07em;
+      font-weight: 500;
+    }
+
+    .split h2 span {
+      color: var(--blue);
+    }
+
+    .split-text {
+      max-width: 390px;
+      margin-top: 42px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    .split-visual {
+      min-height: 650px;
+      background: var(--black);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    /* ------------------------------
+       CARD
+    ------------------------------ */
+
+    .payment-card {
+      width: min(480px, 78%);
+      aspect-ratio: 1.58;
+      border-radius: 18px;
+      background: #181818;
+      border: 1px solid #333;
+      padding: 30px;
+      position: relative;
+      color: white;
+      transform: rotate(-5deg);
+      box-shadow: 0 40px 90px rgba(0,0,0,.35);
+    }
+
+    .payment-card:before {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: var(--blue);
+      filter: blur(70px);
+      opacity: .65;
+      right: -50px;
+      bottom: -70px;
+    }
+
+    .card-logo {
+      font-family: "Azeret Mono", monospace;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -.05em;
+    }
+
+    .card-chip {
+      width: 40px;
+      height: 29px;
+      border-radius: 6px;
+      background: #b7b7b0;
+      margin-top: 95px;
+    }
+
+    .card-number {
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      letter-spacing: .12em;
+      margin-top: 28px;
+      color: #bbb;
+    }
+
+    /* ------------------------------
+       PRODUCT LIST
+    ------------------------------ */
+
+    .products {
+      padding: 120px 28px 0;
+    }
+
+    .products-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 35px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .products-head h2 {
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+    }
+
+    .products-head span {
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 9px;
+    }
+
+    .product-row {
+      display: grid;
+      grid-template-columns: 70px 1fr 1fr 40px;
+      align-items: center;
+      gap: 30px;
+      min-height: 125px;
+      border-bottom: 1px solid var(--line);
+      transition: padding .3s ease;
+    }
+
+    .product-row:hover {
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+
+    .product-number {
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+    }
+
+    .product-name {
+      font-size: clamp(25px, 3vw, 42px);
+      letter-spacing: -.055em;
+      font-weight: 500;
+    }
+
+    .product-desc {
+      max-width: 330px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .product-arrow {
+      font-size: 20px;
+      text-align: right;
+    }
+
+    /* ------------------------------
+       DARK STATEMENT
+    ------------------------------ */
+
+    .dark-section {
+      margin-top: 150px;
+      background: var(--black);
+      color: white;
+      padding: 150px 28px;
+    }
+
+    .dark-inner {
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .dark-section .mono-label {
+      color: #666;
+    }
+
+    .dark-heading {
+      max-width: 1150px;
+      font-size: clamp(55px, 8vw, 125px);
+      line-height: .87;
+      letter-spacing: -.08em;
+      font-weight: 500;
+    }
+
+    .dark-heading span {
+      color: #555;
+    }
+
+    .dark-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-top: 120px;
+      padding-top: 30px;
+      border-top: 1px solid #292929;
+    }
+
+    .dark-item {
+      max-width: 410px;
+    }
+
+    .dark-item h3 {
+      font-size: 14px;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .dark-item p {
+      color: #777;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    /* ------------------------------
+       SECURITY
+    ------------------------------ */
+
+    .security {
+      padding: 150px 28px;
+    }
+
+    .security-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 100px;
+    }
+
+    .security-intro h2 {
+      max-width: 400px;
+      font-size: clamp(48px, 5vw, 72px);
+      line-height: .92;
+      letter-spacing: -.07em;
+      font-weight: 500;
+    }
+
+    .security-content {
+      border-top: 1px solid var(--line);
+    }
+
+    .security-row {
+      display: grid;
+      grid-template-columns: 45% 55%;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+      gap: 30px;
+    }
+
+    .security-row strong {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .security-row p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      max-width: 400px;
+    }
+
+    /* ------------------------------
+       FINAL CTA
+    ------------------------------ */
+
+    .final {
+      background: var(--blue);
+      color: white;
+      padding: 170px 28px 30px;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .final h2 {
+      max-width: 1100px;
+      font-size: clamp(65px, 10vw, 150px);
+      line-height: .84;
+      letter-spacing: -.085em;
+      font-weight: 500;
+    }
+
+    .final-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      padding-top: 100px;
+    }
+
+    .final-copy {
+      max-width: 350px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .final .button {
+      background: white;
+      color: var(--black);
+    }
+
+    /* ------------------------------
+       FOOTER
+    ------------------------------ */
+
+    footer {
+      background: var(--blue);
+      color: white;
+      padding: 30px 28px;
+      border-top: 1px solid rgba(255,255,255,.25);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+    }
+
+    .footer-logo {
+      font-family: "Azeret Mono", monospace;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -.05em;
+    }
+
+    .footer-note {
+      color: rgba(255,255,255,.65);
+    }
+
+    /* ------------------------------
+       RESPONSIVE
+    ------------------------------ */
+
+    @media (max-width: 900px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 125px;
+      }
+
+      .hero-bottom,
+      .split,
+      .security-grid,
+      .dark-bottom {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        justify-content: flex-start;
+      }
+
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .dashboard-main {
+        padding: 28px;
+      }
+
+      .product-window {
+        min-height: 570px;
+      }
+
+      .chart {
+        height: 190px;
+      }
+
+      .split-copy {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        padding: 80px 28px;
+      }
+
+      .split-visual {
+        min-height: 500px;
+      }
+
+      .security-grid {
+        gap: 70px;
+      }
+
+      .security-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .product-row {
+        grid-template-columns: 45px 1fr 35px;
+      }
+
+      .product-desc {
+        display: none;
+      }
+
+      .final-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      nav {
+        padding: 18px;
+      }
+
+      .hero,
+      .statement,
+      .products,
+      .security,
+      .dark-section,
+      .final {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .product-stage {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .hero h1 {
+        font-size: clamp(64px, 19vw, 105px);
+        line-height: 1.04;
+      }
+
+      .hero-bottom {
+        margin-top: 75px;
+      }
+
+      .hero-copy {
+        font-size: 16px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .product-window {
+        border-radius: 16px;
+        min-height: 520px;
+      }
+
+      .dashboard-main {
+        padding: 22px;
+      }
+
+      .balance {
+        font-size: 37px;
+      }
+
+      .dashboard-heading {
+        margin-bottom: 30px;
+      }
+
+      .statement {
+        padding-top: 120px;
+        padding-bottom: 120px;
+      }
+
+      .split-copy {
+        padding: 70px 18px;
+      }
+
+      .split-visual {
+        min-height: 400px;
+      }
+
+      .payment-card {
+        width: 82%;
+      }
+
+      .products {
+        padding-top: 90px;
+      }
+
+      .product-row {
+        min-height: 100px;
+        gap: 15px;
+      }
+
+      .dark-section,
+      .security {
+        padding-top: 110px;
+        padding-bottom: 110px;
+      }
+
+      .dark-bottom {
+        margin-top: 80px;
+      }
+
+      .final {
+        min-height: 75vh;
+        padding-top: 120px;
+      }
+
+      footer {
+        padding: 24px 18px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav>
+    <div class="nav-inner">
+
+      <a href="#" class="logo">Velo</a>
+
+      <div class="nav-links">
+        <a href="#platform">Platform</a>
+        <a href="#security">Security</a>
+        <a href="#contact" class="nav-cta">Get started</a>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <main>
+
+    <section class="hero">
+
+      <div class="hero-top">
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Financial infrastructure
+        </div>
+
+        <h1>
+          Money<br>
+          in <span>motion.</span>
+        </h1>
+
+      </div>
+
+      <div class="hero-bottom">
+
+        <p class="hero-copy">
+          One place to hold, move and manage money.
+          Built for businesses that refuse to move at the pace of traditional finance.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="button button-dark">
+            Open an account
+          </a>
+
+          <a href="#platform" class="button button-light">
+            See how it works
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PRODUCT -->
+
+    <section class="product-stage" id="platform">
+
+      <div class="product-window">
+
+        <div class="window-top">
+
+          <div class="window-brand">
+            Velo
+          </div>
+
+          <div class="window-user">
+            AH
+          </div>
+
+        </div>
+
+
+        <div class="dashboard">
+
+          <aside class="sidebar">
+
+            <div class="side-label">
+              Workspace
+            </div>
+
+            <div class="side-item active">
+              Overview
+            </div>
+
+            <div class="side-item">
+              Payments
+            </div>
+
+            <div class="side-item">
+              Cards
+            </div>
+
+            <div class="side-item">
+              Accounts
+            </div>
+
+
+            <div class="side-label">
+              Manage
+            </div>
+
+            <div class="side-item">
+              Recipients
+            </div>
+
+            <div class="side-item">
+              Team
+            </div>
+
+            <div class="side-item">
+              Reports
+            </div>
+
+          </aside>
+
+
+          <div class="dashboard-main">
+
+            <div class="dashboard-heading">
+
+              <div>
+
+                <small>
+                  Total balance
+                </small>
+
+                <div class="balance">
+                  £482,930<span>.21</span>
+                </div>
+
+              </div>
+
+              <div class="date-select">
+                Last 30 days
+              </div>
+
+            </div>
+
+
+            <!-- ACTUAL FINANCIAL CHART -->
+
+            <div class="chart">
+
+              <div class="chart-grid"></div>
+
+              <svg
+                class="chart-svg"
+                viewBox="0 0 1000 200"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+
+                <defs>
+
+                  <linearGradient
+                    id="chartGradient"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
+                    <stop
+                      offset="0%"
+                      stop-color="#315cff"
+                      stop-opacity=".55"
+                    />
+
+                    <stop
+                      offset="100%"
+                      stop-color="#315cff"
+                      stop-opacity="0"
+                    />
+
+                  </linearGradient>
+
+                </defs>
+
+
+                <path
+                  class="chart-area"
+                  d="
+                    M 0 158
+                    C 45 151, 82 142, 125 146
+                    C 170 150, 205 123, 250 129
+                    C 298 136, 330 111, 375 116
+                    C 420 121, 462 96, 510 103
+                    C 555 110, 590 84, 635 91
+                    C 680 98, 720 70, 765 76
+                    C 810 82, 850 53, 895 61
+                    C 930 67, 965 39, 1000 30
+                    L 1000 200
+                    L 0 200
+                    Z
+                  "
+                />
+
+
+                <path
+                  class="chart-path"
+                  d="
+                    M 0 158
+                    C 45 151, 82 142, 125 146
+                    C 170 150, 205 123, 250 129
+                    C 298 136, 330 111, 375 116
+                    C 420 121, 462 96, 510 103
+                    C 555 110, 590 84, 635 91
+                    C 680 98, 720 70, 765 76
+                    C 810 82, 850 53, 895 61
+                    C 930 67, 965 39, 1000 30
+                  "
+                />
+
+
+                <circle
+                  class="chart-end"
+                  cx="1000"
+                  cy="30"
+                  r="6"
+                />
+
+              </svg>
+
+            </div>
+
+
+            <!-- TRANSACTIONS -->
+
+            <div class="transactions">
+
+              <div class="transactions-header">
+                <span>Transaction</span>
+                <span>Status</span>
+                <span style="text-align:right;">Amount</span>
+              </div>
+
+
+              <div class="transaction">
+
+                <span class="transaction-name">
+                  Stripe Treasury
+                </span>
+
+                <span class="transaction-status">
+                  Completed
+                </span>
+
+                <span class="transaction-amount">
+                  + £24,800
+                </span>
+
+              </div>
+
+
+              <div class="transaction">
+
+                <span class="transaction-name">
+                  Northstar Ltd.
+                </span>
+
+                <span class="transaction-status">
+                  Completed
+                </span>
+
+                <span class="transaction-amount">
+                  − £8,420
+                </span>
+
+              </div>
+
+
+              <div class="transaction">
+
+                <span class="transaction-name">
+                  Adyen Europe
+                </span>
+
+                <span class="transaction-status">
+                  Completed
+                </span>
+
+                <span class="transaction-amount">
+                  + £13,200
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- STATEMENT -->
+
+    <section class="statement">
+
+      <p>
+        Banking was built around
+        <span>institutions.</span>
+        Velo is built around
+        <span>how businesses actually move.</span>
+      </p>
+
+    </section>
+
+
+    <!-- SPEND -->
+
+    <section class="split">
+
+      <div class="split-copy">
+
+        <div class="mono-label">
+          01 / Spend
+        </div>
+
+        <h2>
+          Give every pound
+          <span>a purpose.</span>
+        </h2>
+
+        <p class="split-text">
+          Issue cards, set limits, approve spending and see every transaction
+          without chasing receipts or reconciling spreadsheets.
+        </p>
+
+      </div>
+
+
+      <div class="split-visual">
+
+        <div class="payment-card">
+
+          <div class="card-logo">
+            Velo
+          </div>
+
+          <div class="card-chip"></div>
+
+          <div class="card-number">
+            4821&nbsp;&nbsp; 0912&nbsp;&nbsp; 0042&nbsp;&nbsp; 8817
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+
+    <section class="products">
+
+      <div class="products-head">
+
+        <h2>
+          Everything your finance team needs.
+        </h2>
+
+        <span>
+          01 — 05
+        </span>
+
+      </div>
+
+
+      <div class="product-row">
+
+        <span class="product-number">
+          01
+        </span>
+
+        <span class="product-name">
+          Accounts
+        </span>
+
+        <span class="product-desc">
+          Business accounts designed around how modern companies operate.
+        </span>
+
+        <span class="product-arrow">
+          ↗
+        </span>
+
+      </div>
+
+
+      <div class="product-row">
+
+        <span class="product-number">
+          02
+        </span>
+
+        <span class="product-name">
+          Payments
+        </span>
+
+        <span class="product-desc">
+          Send and receive money without unnecessary steps.
+        </span>
+
+        <span class="product-arrow">
+          ↗
+        </span>
+
+      </div>
+
+
+      <div class="product-row">
+
+        <span class="product-number">
+          03
+        </span>
+
+        <span class="product-name">
+          Cards
+        </span>
+
+        <span class="product-desc">
+          Physical and virtual cards with control built in.
+        </span>
+
+        <span class="product-arrow">
+          ↗
+        </span>
+
+      </div>
+
+
+      <div class="product-row">
+
+        <span class="product-number">
+          04
+        </span>
+
+        <span class="product-name">
+          FX
+        </span>
+
+        <span class="product-desc">
+          Hold and move multiple currencies from one account.
+        </span>
+
+        <span class="product-arrow">
+          ↗
+        </span>
+
+      </div>
+
+
+      <div class="product-row">
+
+        <span class="product-number">
+          05
+        </span>
+
+        <span class="product-name">
+          Controls
+        </span>
+
+        <span class="product-desc">
+          Permissions, approvals and visibility for every team.
+        </span>
+
+        <span class="product-arrow">
+          ↗
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <!-- DIFFERENCE -->
+
+    <section class="dark-section">
+
+      <div class="dark-inner">
+
+        <div class="mono-label">
+          The difference
+        </div>
+
+        <div class="dark-heading">
+          Less banking.
+          <span>More control.</span>
+        </div>
+
+
+        <div class="dark-bottom">
+
+          <div class="dark-item">
+
+            <h3>
+              One financial layer
+            </h3>
+
+            <p>
+              Your accounts, cards, payments and controls live together,
+              instead of across a collection of disconnected tools.
+            </p>
+
+          </div>
+
+
+          <div class="dark-item">
+
+            <h3>
+              Built for movement
+            </h3>
+
+            <p>
+              From the first payment to the thousandth,
+              Velo is designed to make moving money feel effortless.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SECURITY -->
+
+    <section class="security" id="security">
+
+      <div class="security-grid">
+
+        <div class="security-intro">
+
+          <div class="mono-label">
+            Security
+          </div>
+
+          <h2>
+            Serious about
+            your money.
+          </h2>
+
+        </div>
+
+
+        <div class="security-content">
+
+          <div class="security-row">
+
+            <strong>
+              Role-based access
+            </strong>
+
+            <p>
+              Give every person exactly the access they need.
+              Nothing more.
+            </p>
+
+          </div>
+
+
+          <div class="security-row">
+
+            <strong>
+              Approval controls
+            </strong>
+
+            <p>
+              Keep sensitive payments behind configurable approval rules.
+            </p>
+
+          </div>
+
+
+          <div class="security-row">
+
+            <strong>
+              Complete visibility
+            </strong>
+
+            <p>
+              See what moved, when it moved and who approved it.
+            </p>
+
+          </div>
+
+
+          <div class="security-row">
+
+            <strong>
+              Designed for scale
+            </strong>
+
+            <p>
+              Infrastructure designed to support businesses as their
+              financial operations become more complex.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- FINAL -->
+
+    <section class="final" id="contact">
+
+      <h2>
+        Move<br>
+        differently.
+      </h2>
+
+
+      <div class="final-bottom">
+
+        <p class="final-copy">
+          Velo is financial infrastructure for businesses
+          ready to leave traditional banking behind.
+        </p>
+
+        <a href="#" class="button">
+          Get started
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-inner">
+
+      <div class="footer-logo">
+        Velo
+      </div>
+
+      <div class="footer-note">
+        Concept website. Brand, product and interface are fictional.
+      </div>
+
+      <div>
+        © 2026 AH-S™ Digital Boutique
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- WIX IFRAME HEIGHT -->
+
+  <script>
+    function sendHeight() {
+      window.parent.postMessage(
+        {
+          type: "AH-S_BROCHURE_HEIGHT",
+          height: document.documentElement.scrollHeight
+        },
+        "*"
+      );
+    }
+
+    window.addEventListener("load", sendHeight);
+    window.addEventListener("resize", sendHeight);
+
+    const observer = new MutationObserver(sendHeight);
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true
+    });
+  </script>
+
+</body>
+</html>
