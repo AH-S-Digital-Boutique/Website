@@ -1,10 +1,10 @@
-# AH-S™ Website
+# Convert77™ Website
 
 > **Private production infrastructure for ASTON H-S Ltd.**
 >
 > **Unauthorised access, use, reproduction, redistribution or modification is prohibited.**
 
-This repository contains the source code, architecture, assets, components, systems and supporting infrastructure used to operate the **AH-S™ Web Solutions Agency** website and associated digital experiences.
+This repository contains the source code, architecture, assets, components, systems and supporting infrastructure used to operate the **Convert77™** website and associated digital experiences.
 
 This is **proprietary software and intellectual property belonging to ASTON H-S Ltd.**
 
@@ -49,7 +49,7 @@ All original code, architecture, component systems, design systems, interfaces, 
 
 Third-party dependencies remain subject to their respective licences.
 
-Nothing in this repository grants any licence, assignment or other right to use AH-S™ intellectual property.
+Nothing in this repository grants any licence, assignment or other right to use Convert77™ intellectual property.
 
 **Viewing does not equal ownership.**
 
@@ -57,29 +57,8 @@ Nothing in this repository grants any licence, assignment or other right to use 
 
 **Similarity does not equal authorisation.**
 
----
 
-## THE AH-S ENGINE
-
-This repository is intended to evolve beyond a conventional website codebase.
-
-It may contain reusable:
-
-* UI components
-* design-system primitives
-* responsive systems
-* animation systems
-* conversion mechanisms
-* SEO infrastructure
-* analytics implementations
-* accessibility systems
-* interactive tools
-* landing-page architecture
-* internal development utilities
-* deployment configuration
-* experimental technology
-
-Some systems may subsequently be extracted into internal AH-S frameworks or other proprietary products.
+Some systems may subsequently be extracted into internal Convert77™ frameworks or other proprietary products.
 
 Do not assume that any component is available for independent reuse.
 
@@ -108,7 +87,7 @@ The architecture will evolve.
 
 **Do not introduce structural changes simply because they appear cleaner in isolation.**
 
-Changes must support maintainability, performance, scalability and the long-term AH-S technology strategy.
+Changes must support maintainability, performance, scalability and the long-term Convert77™ technology strategy.
 
 ---
 
@@ -172,7 +151,7 @@ Before adding a package, consider:
 * licence
 * performance
 * native browser capabilities
-* whether the functionality belongs in the AH-S codebase
+* whether the functionality belongs in the Convert77™ codebase
 
 **Dependency bloat is technical debt with an invoice attached.**
 
@@ -206,7 +185,7 @@ Today's shortcut can become tomorrow's bottleneck.
 
 ### Protect the asset.
 
-The AH-S codebase is a business asset.
+The Convert77™ codebase is a business asset.
 
 Treat it accordingly.
 
@@ -233,7 +212,7 @@ If you find a security issue:
 
 **Do not publish it publicly.**
 
-Report it directly to the appropriate AH-S administrator.
+Report it directly to the appropriate Convert77™ administrator.
 
 ---
 
@@ -267,7 +246,7 @@ If you do not have permission:
 
 ---
 
-## AH-S™
+## Convert77™
 
 **ASTON H-S Ltd.**
 
